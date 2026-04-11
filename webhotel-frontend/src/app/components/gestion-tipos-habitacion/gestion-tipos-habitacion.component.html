@@ -1,0 +1,80 @@
+<section class="gestion-tipos">
+  <header class="gestion-tipos__header">
+    <h1>Gestion de tipos de habitacion</h1>
+    <p>Alta, edicion y baja de tipos de habitacion para administradores.</p>
+  </header>
+
+  <div class="gestion-tipos__feedback" *ngIf="error">{{ error }}</div>
+  <div class="gestion-tipos__feedback gestion-tipos__feedback--ok" *ngIf="!error && success">{{ success }}</div>
+
+  <form class="gestion-form" (ngSubmit)="guardarTipoHabitacion()">
+    <div class="gestion-form__grid">
+      <label>
+        Denominacion
+        <input type="text" name="denominacion" [(ngModel)]="form.denominacion" required />
+      </label>
+
+      <label>
+        Capacidad de personas
+        <input type="number" name="capacidadPersonas" [(ngModel)]="form.capacidadPersonas" min="1" required />
+      </label>
+
+      <label>
+        Precio por dia
+        <input type="number" name="precioPorDia" [(ngModel)]="form.precio_por_dia" min="0" required />
+      </label>
+
+      <label>
+        Camas
+        <input type="text" name="camas" [(ngModel)]="form.camas" />
+      </label>
+
+      <label class="gestion-form__field--full">
+        URL de imagen
+        <input type="text" name="urlImagen" [(ngModel)]="form.url_imagen" />
+      </label>
+
+      <label class="gestion-form__field--full">
+        Descripcion
+        <textarea name="descripcion" [(ngModel)]="form.descripcion" rows="3" required></textarea>
+      </label>
+    </div>
+
+    <div class="gestion-form__actions">
+      <button type="submit" [disabled]="isSaving">
+        {{ editingId ? 'Guardar cambios' : 'Agregar tipo de habitacion' }}
+      </button>
+      <button type="button" class="secondary" (click)="cancelarEdicion()" *ngIf="editingId">Cancelar</button>
+    </div>
+  </form>
+
+  <div class="gestion-tipos__estado" *ngIf="isLoading">Cargando tipos de habitacion...</div>
+
+  <table class="gestion-tabla" *ngIf="!isLoading && tiposHabitacion.length > 0">
+    <thead>
+      <tr>
+        <th>Denominacion</th>
+        <th>Descripcion</th>
+        <th>Capacidad</th>
+        <th>Precio por dia</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let tipo of tiposHabitacion">
+        <td>{{ tipo.denominacion }}</td>
+        <td>{{ tipo.descripcion }}</td>
+        <td>{{ tipo.capacidadPersonas || tipo.capacidad_persona || tipo.capacidad_personas || tipo.capacidad }}</td>
+        <td>${{ tipo.precio_por_dia || tipo.precioPorDia }}</td>
+        <td class="gestion-tabla__actions">
+          <button type="button" (click)="editarTipoHabitacion(tipo)">Editar</button>
+          <button type="button" class="danger" (click)="eliminarTipoHabitacion(tipo)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="gestion-tipos__estado" *ngIf="!isLoading && tiposHabitacion.length === 0">
+    No hay tipos de habitacion cargados.
+  </div>
+</section>

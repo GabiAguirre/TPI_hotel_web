@@ -1,0 +1,92 @@
+.header {
+    height: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    overflow: hidden;
+    z-index: 100;
+    background-color: white;
+    box-shadow: 0 3px 7px -2px gray;
+}
+
+.logo {
+    margin-left: 3em;
+}
+
+.logo__image {
+    display: block;
+    height: 64px;
+    width: auto;
+    max-width: 260px;
+}
+
+.buttons {
+    margin-right: 1em;
+}
+
+.button {
+    border: none;
+    background: transparent;
+    margin-left: 2em;
+}
+
+.auth-tabs {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-right: 3em;
+}
+
+.auth-tab {
+    text-decoration: none;
+    padding: 0.4rem 1rem;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    color: #333;
+    border: 1px solid #ccc;
+    background: transparent;
+    cursor: pointer;
+    transition: background-color 0.2s, color 0.2s;
+
+    &:hover, &.active {
+        background-color: #333;
+        color: #fff;
+        border-color: #333;
+    }
+
+    &--register {
+        background-color: #0d6efd;
+        color: #fff;
+        border-color: #0d6efd;
+
+        &:hover, &.active {
+            background-color: #0a58ca;
+            border-color: #0a58ca;
+        }
+    }
+}
+
+.user-name {
+    font-weight: 500;
+    color: #333;
+}
+
+@media (max-width: 768px) {
+    .header {
+        height: auto;
+        min-height: 88px;
+        padding: 0.6rem 0;
+    }
+
+    .logo {
+        margin-left: 1rem;
+    }
+
+    .logo__image {
+        height: 48px;
+        max-width: 190px;
+    }
+}

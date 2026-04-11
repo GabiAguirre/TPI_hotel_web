@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#0c4a6e"/>
+  <rect x="180" y="200" width="840" height="420" rx="28" fill="#22d3ee"/>
+  <path d="M200 300q40 30 80 0t80 0t80 0t80 0t80 0t80 0t80 0t80 0" stroke="#e0f2fe" stroke-width="16" fill="none"/>
+  <path d="M200 400q40 30 80 0t80 0t80 0t80 0t80 0t80 0t80 0t80 0" stroke="#e0f2fe" stroke-width="16" fill="none"/>
+  <text x="600" y="710" font-size="72" text-anchor="middle" fill="#e0f2fe" font-family="Arial">Piscina</text>
+</svg>

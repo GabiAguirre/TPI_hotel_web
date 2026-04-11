@@ -1,0 +1,34 @@
+<section class="habitaciones">
+  <div class="habitaciones__hero">
+    <h1>Tipos de habitaciones</h1>
+    <p>Explora todas nuestras opciones y elige la que mejor se adapte a tu viaje.</p>
+  </div>
+
+  <div class="habitaciones__estado" *ngIf="isLoading">Cargando habitaciones...</div>
+  <div class="habitaciones__estado habitaciones__estado--error" *ngIf="!isLoading && error">{{ error }}</div>
+  <div class="habitaciones__estado" *ngIf="!isLoading && !error && tiposHabitaciones.length === 0">
+    No hay tipos de habitaciones disponibles por el momento.
+  </div>
+
+  <div class="habitaciones__grid" *ngIf="!isLoading && !error && tiposHabitaciones.length > 0">
+    <article class="habitacion-card" *ngFor="let habitacion of tiposHabitaciones">
+      <img
+        class="habitacion-card__imagen"
+        [src]="habitacion.imagen"
+        [alt]="habitacion.nombre"
+        loading="lazy"
+      />
+
+      <div class="habitacion-card__body">
+        <h2>{{ habitacion.nombre }}</h2>
+        <p>{{ habitacion.descripcion }}</p>
+
+        <ul>
+          <li><strong>Capacidad:</strong> {{ habitacion.capacidad }}</li>
+          <li><strong>Camas:</strong> {{ habitacion.camas }}</li>
+          <li><strong>Precio por noche:</strong> {{ habitacion.precioNoche }}</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>

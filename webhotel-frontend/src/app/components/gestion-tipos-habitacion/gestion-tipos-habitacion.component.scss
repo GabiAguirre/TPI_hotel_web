@@ -1,0 +1,137 @@
+.gestion-tipos {
+  max-width: 1080px;
+  margin: 2rem auto;
+  padding: 0 1rem 2rem;
+}
+
+.gestion-tipos__header h1 {
+  margin-bottom: 0.5rem;
+}
+
+.gestion-tipos__header p {
+  margin-top: 0;
+  color: #555;
+}
+
+.gestion-tipos__feedback {
+  margin: 1rem 0;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  background: #ffe2e2;
+  color: #8f1d1d;
+}
+
+.gestion-tipos__feedback--ok {
+  background: #e7f8ea;
+  color: #13622a;
+}
+
+.gestion-form {
+  background: #f7f9fc;
+  border: 1px solid #dde3ed;
+  border-radius: 12px;
+  padding: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.gestion-form__grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(220px, 1fr));
+  gap: 0.8rem;
+}
+
+.gestion-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  font-weight: 600;
+}
+
+.gestion-form input,
+.gestion-form textarea {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 0.55rem 0.7rem;
+  font: inherit;
+}
+
+.gestion-form__field--full {
+  grid-column: 1 / -1;
+}
+
+.gestion-form__actions {
+  margin-top: 1rem;
+  display: flex;
+  gap: 0.75rem;
+}
+
+button {
+  border: 0;
+  border-radius: 8px;
+  padding: 0.55rem 0.95rem;
+  background: #0d6efd;
+  color: #fff;
+  cursor: pointer;
+}
+
+button.secondary {
+  background: #64748b;
+}
+
+button.danger {
+  background: #c53030;
+}
+
+button:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.gestion-tabla {
+  width: 100%;
+  border-collapse: collapse;
+  background: #fff;
+  border: 1px solid #e2e8f0;
+}
+
+.gestion-tabla th,
+.gestion-tabla td {
+  text-align: left;
+  border-bottom: 1px solid #edf2f7;
+  padding: 0.7rem;
+  vertical-align: top;
+}
+
+.gestion-tabla__actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.gestion-tipos__estado {
+  color: #334155;
+}
+
+@media (max-width: 800px) {
+  .gestion-form__grid {
+    grid-template-columns: 1fr;
+  }
+
+  .gestion-tabla,
+  .gestion-tabla thead,
+  .gestion-tabla tbody,
+  .gestion-tabla tr,
+  .gestion-tabla th,
+  .gestion-tabla td {
+    display: block;
+    width: 100%;
+  }
+
+  .gestion-tabla thead {
+    display: none;
+  }
+
+  .gestion-tabla tr {
+    border-bottom: 1px solid #edf2f7;
+    padding: 0.5rem 0;
+  }
+}

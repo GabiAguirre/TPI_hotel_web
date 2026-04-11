@@ -1,0 +1,33 @@
+<section class="servicios">
+  <div class="servicios__hero">
+    <h1>Servicios disponibles</h1>
+    <p>Descubre todas las comodidades que ofrecemos para mejorar tu estadia.</p>
+  </div>
+
+  <div class="servicios__estado" *ngIf="isLoading">Cargando servicios...</div>
+  <div class="servicios__estado servicios__estado--error" *ngIf="!isLoading && error">{{ error }}</div>
+  <div class="servicios__estado" *ngIf="!isLoading && !error && servicios.length === 0">
+    No hay servicios disponibles por el momento.
+  </div>
+
+  <div class="servicios__grid" *ngIf="!isLoading && !error && servicios.length > 0">
+    <article class="servicio-card" *ngFor="let servicio of servicios">
+      <img
+        class="servicio-card__imagen"
+        [src]="servicio.imagen"
+        [alt]="servicio.nombre"
+        (error)="onImageError(servicio)"
+        loading="lazy"
+      />
+
+      <div class="servicio-card__body">
+        <h2>{{ servicio.nombre }}</h2>
+        <p>{{ servicio.descripcion }}</p>
+
+        <ul>
+          <li><strong>Costo:</strong> {{ servicio.costo }}</li>
+        </ul>
+      </div>
+    </article>
+  </div>
+</section>

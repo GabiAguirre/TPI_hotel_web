@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#854d0e"/>
+  <circle cx="600" cy="430" r="210" fill="#fef3c7"/>
+  <circle cx="600" cy="430" r="95" fill="#f59e0b"/>
+  <rect x="360" y="230" width="80" height="160" rx="20" fill="#fcd34d"/>
+  <rect x="760" y="230" width="80" height="160" rx="20" fill="#fcd34d"/>
+  <text x="600" y="710" font-size="72" text-anchor="middle" fill="#fef3c7" font-family="Arial">Desayuno</text>
+</svg>

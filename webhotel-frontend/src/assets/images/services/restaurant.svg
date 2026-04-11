@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#7c2d12"/>
+  <rect x="250" y="300" width="700" height="260" rx="30" fill="#ffedd5"/>
+  <line x1="470" y1="250" x2="470" y2="560" stroke="#ea580c" stroke-width="22"/>
+  <line x1="530" y1="250" x2="530" y2="560" stroke="#ea580c" stroke-width="14"/>
+  <line x1="600" y1="250" x2="600" y2="560" stroke="#ea580c" stroke-width="22"/>
+  <path d="M730 250v130" stroke="#ea580c" stroke-width="22"/>
+  <circle cx="730" cy="420" r="70" fill="none" stroke="#ea580c" stroke-width="22"/>
+  <text x="600" y="700" font-size="72" text-anchor="middle" fill="#ffedd5" font-family="Arial">Restaurante</text>
+</svg>

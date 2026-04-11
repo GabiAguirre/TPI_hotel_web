@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="800" viewBox="0 0 1200 800">
+  <rect width="1200" height="800" fill="#111827"/>
+  <path d="M260 380c180-170 500-170 680 0" stroke="#93c5fd" stroke-width="26" fill="none"/>
+  <path d="M370 470c120-110 340-110 460 0" stroke="#60a5fa" stroke-width="26" fill="none"/>
+  <path d="M490 560c60-55 160-55 220 0" stroke="#3b82f6" stroke-width="26" fill="none"/>
+  <circle cx="600" cy="640" r="28" fill="#dbeafe"/>
+  <text x="600" y="730" font-size="68" text-anchor="middle" fill="#dbeafe" font-family="Arial">WiFi Premium</text>
+</svg>

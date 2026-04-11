@@ -1,0 +1,160 @@
+<div class="container py-4">
+
+  <!-- Indicador de pasos -->
+  <div class="steps-indicator mb-4" *ngIf="step < 3">
+    <span [class.active]="step === 1" [class.done]="step > 1">1. Disponibilidad</span>
+    <span class="sep">›</span>
+    <span [class.active]="step === 2" [class.done]="step > 2">2. Servicios y resumen</span>
+    <span class="sep">›</span>
+    <span>3. Confirmación</span>
+  </div>
+
+  <!-- STEP 1: Selección de fechas y tipo -->
+  <div *ngIf="step === 1" class="card shadow-sm">
+    <div class="card-body">
+      <h4 class="card-title mb-4">Reservar habitación</h4>
+
+      <div class="mb-3">
+        <label class="form-label fw-semibold">Tipo de habitación</label>
+        <select class="form-select" [(ngModel)]="selectedTipoId">
+          <option [ngValue]="null" disabled>Seleccioná un tipo...</option>
+          <option *ngFor="let tipo of tiposHabitacion" [ngValue]="tipo.id">
+            {{ tipo.denominacion }} — ${{ tipo.precio_por_dia }}/noche
+            (hasta {{ tipo.capacidadPersonas }} personas)
+          </option>
+        </select>
+        <div *ngIf="selectedTipo" class="form-text text-muted mt-1">
+          {{ selectedTipo.descripcion }}
+        </div>
+      </div>
+
+      <div class="row g-3 mb-3">
+        <div class="col-sm-6">
+          <label class="form-label fw-semibold">Fecha de ingreso</label>
+          <input type="date" class="form-control" [(ngModel)]="fechaIngreso" [min]="today" />
+        </div>
+        <div class="col-sm-6">
+          <label class="form-label fw-semibold">Fecha de egreso</label>
+          <input type="date" class="form-control" [(ngModel)]="fechaEgreso"
+                 [min]="fechaIngreso || today" />
+        </div>
+      </div>
+
+      <div *ngIf="message" class="alert alert-danger">{{ message }}</div>
+
+      <button class="btn btn-primary"
+              (click)="buscarDisponibilidad()"
+              [disabled]="isLoading">
+        {{ isLoading ? 'Buscando...' : 'Verificar disponibilidad' }}
+      </button>
+    </div>
+  </div>
+
+  <!-- STEP 2: Servicios + resumen -->
+  <div *ngIf="step === 2 && habitacionDisponible" class="card shadow-sm">
+    <div class="card-body">
+      <h4 class="card-title mb-4">Resumen de la reserva</h4>
+
+      <div class="table-responsive mb-3">
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td class="text-muted">Habitación</td>
+              <td><strong>N° {{ habitacionDisponible.nroHabitacion }}
+                — {{ habitacionDisponible.tipoHabitacion.denominacion }}</strong></td>
+            </tr>
+            <tr>
+              <td class="text-muted">Ingreso</td>
+              <td><strong>{{ fechaIngreso }}</strong></td>
+            </tr>
+            <tr>
+              <td class="text-muted">Egreso</td>
+              <td><strong>{{ fechaEgreso }}</strong></td>
+            </tr>
+            <tr>
+              <td class="text-muted">Noches</td>
+              <td><strong>{{ noches }}</strong></td>
+            </tr>
+            <tr>
+              <td class="text-muted">Precio por noche</td>
+              <td><strong>${{ habitacionDisponible.tipoHabitacion.precio_por_dia }}</strong></td>
+            </tr>
+            <tr>
+              <td class="text-muted">Subtotal habitación</td>
+              <td><strong>${{ precioBase }}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div *ngIf="serviciosDisponibles.length > 0" class="mb-3">
+        <h6 class="fw-semibold mb-2">Servicios adicionales (opcional)</h6>
+        <div *ngFor="let servicio of serviciosDisponibles" class="form-check mb-1">
+          <input class="form-check-input" type="checkbox" [id]="'srv-' + servicio.id"
+                 (change)="toggleServicio(servicio, $any($event.target).checked)" />
+          <label class="form-check-label" [for]="'srv-' + servicio.id">
+            {{ servicio.denominacion }} — <strong>${{ servicio.costo }}</strong>
+            <span *ngIf="servicio.descripcion" class="text-muted"> · {{ servicio.descripcion }}</span>
+          </label>
+        </div>
+      </div>
+
+      <div class="d-flex justify-content-between align-items-center border-top pt-3 mb-3">
+        <span class="fs-5 fw-semibold">Total</span>
+        <span class="fs-4 fw-bold text-primary">${{ precioTotal }}</span>
+      </div>
+
+      <div *ngIf="message" class="alert alert-danger">{{ message }}</div>
+
+      <div class="d-flex gap-2">
+        <button class="btn btn-outline-secondary" (click)="volver()">Volver</button>
+        <button class="btn btn-success" (click)="confirmarReserva()" [disabled]="isLoading">
+          {{ isLoading ? 'Reservando...' : 'Confirmar reserva' }}
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- STEP 3: Éxito -->
+  <div *ngIf="step === 3 && reservaCreada" class="card shadow-sm text-center">
+    <div class="card-body py-5">
+      <div class="success-icon mb-3">✓</div>
+      <h3 class="mb-2">¡Reserva registrada!</h3>
+      <p class="text-muted mb-4">
+        Tu reserva fue creada en estado <span class="badge bg-warning text-dark">PENDIENTE</span>.
+        Podés confirmarla desde "Mis reservas" para recibir el mail de confirmación.
+      </p>
+
+      <div class="table-responsive mx-auto" style="max-width:400px">
+        <table class="table table-borderless">
+          <tbody>
+            <tr>
+              <td class="text-muted">N° reserva</td>
+              <td><strong>#{{ reservaCreada.id_estadia }}</strong></td>
+            </tr>
+            <tr>
+              <td class="text-muted">Habitación</td>
+              <td><strong>N° {{ reservaCreada.habitacion?.nroHabitacion }}
+                — {{ reservaCreada.habitacion?.tipoHabitacion?.denominacion }}</strong></td>
+            </tr>
+            <tr>
+              <td class="text-muted">Ingreso</td>
+              <td><strong>{{ reservaCreada.fecha_ingreso }}</strong></td>
+            </tr>
+            <tr>
+              <td class="text-muted">Egreso</td>
+              <td><strong>{{ reservaCreada.fecha_egreso }}</strong></td>
+            </tr>
+            <tr>
+              <td class="text-muted">Total</td>
+              <td><strong>${{ reservaCreada.precio_total }}</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <button class="btn btn-primary" routerLink="/mis-reservas">Ver mis reservas</button>
+    </div>
+  </div>
+
+</div>

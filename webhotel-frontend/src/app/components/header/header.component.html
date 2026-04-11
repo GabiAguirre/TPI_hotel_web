@@ -1,0 +1,24 @@
+<div class="header">
+    <div class="logo">
+        <img src="/assets/images/logo-g-hotel.svg" alt="Logo Gabi Hotel" class="logo__image" />
+    </div>
+    <div class="buttons">
+        <button class="button" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">Inicio</button>
+        <button class="button" routerLink="/servicios" routerLinkActive="active">Servicios</button>
+        <button class="button" routerLink="/habitaciones" routerLinkActive="active">Habitaciones</button>
+        <button class="button" routerLink="/reservar" routerLinkActive="active" *ngIf="authService.isLoggedIn() && !authService.isAdmin()">Reservar</button>
+        <button class="button" routerLink="/mis-reservas" routerLinkActive="active" *ngIf="authService.isLoggedIn() && !authService.isAdmin()">Mis reservas</button>
+        <button class="button" routerLink="/admin/estadias-confirmadas" routerLinkActive="active" *ngIf="authService.isAdmin()">Estadías confirmadas</button>
+        <button class="button" routerLink="/admin/estadias-en-curso" routerLinkActive="active" *ngIf="authService.isAdmin()">Estadías en curso</button>
+    </div>
+    <div class="auth-tabs">
+        <ng-container *ngIf="!authService.isLoggedIn(); else userInfo">
+            <a class="auth-tab" routerLink="/login" routerLinkActive="active">Iniciar sesión</a>
+            <a class="auth-tab auth-tab--register" routerLink="/register" routerLinkActive="active">Registrarse</a>
+        </ng-container>
+        <ng-template #userInfo>
+            <span class="user-name">{{ authService.getUserName() }}</span>
+            <button class="auth-tab" (click)="logout()">Cerrar sesión</button>
+        </ng-template>
+    </div>
+</div>

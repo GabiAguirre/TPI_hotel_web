@@ -1,0 +1,33 @@
+<div class="container">
+    <div class="gabi-banner">
+      Gabi-Hotel
+    </div>
+
+    <div class="admin-actions" *ngIf="canManageRoomTypes()">
+      <button class="admin-actions__button" routerLink="/admin/tipos-habitacion">
+        Administrar tipos de habitacion
+      </button>
+      <button class="admin-actions__button admin-actions__button--secondary" routerLink="/admin/servicios">
+        Administrar servicios
+      </button>
+    </div>
+
+    <div id="carouselExampleAutoplaying" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-inner">
+          <div class="carousel-item active">
+            <img src="https://blog.grupoemerita.com/hs-fs/hubfs/02%20MARKETING/06%20BLOG%20WEB/BLOG%20INTERIOR/Marzo%202020/27%20marzo/Portada.png?width=1253&name=Portada.png" class="d-block w-100" alt="...">
+          </div>
+          <div class="carousel-item">
+            <img src="http://hotelreinaisabel.com/wp-content/uploads/2015/09/habitaciones-banner.jpg" class="d-block w-100" alt="...">
+          </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleAutoplaying" data-bs-slide="next">
+          <span class="carousel-control-next-icon" aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>

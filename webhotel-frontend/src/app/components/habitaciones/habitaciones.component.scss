@@ -1,0 +1,93 @@
+.habitaciones {
+  padding: 2rem 1.5rem 3rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.habitaciones__hero {
+  margin-bottom: 1.75rem;
+
+  h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: #1e2a38;
+  }
+
+  p {
+    margin: 0.5rem 0 0;
+    color: #495057;
+    font-size: 1rem;
+  }
+}
+
+.habitaciones__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 1.25rem;
+}
+
+.habitaciones__estado {
+  padding: 0.8rem 1rem;
+  border-radius: 8px;
+  margin-bottom: 1rem;
+  background: #e9f3ff;
+  color: #0b5ed7;
+  border: 1px solid #b6d4fe;
+}
+
+.habitaciones__estado--error {
+  background: #f8d7da;
+  color: #842029;
+  border-color: #f1aeb5;
+}
+
+.habitacion-card {
+  border: 1px solid #dee2e6;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: #fff;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+  display: flex;
+  flex-direction: column;
+}
+
+.habitacion-card__imagen {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+}
+
+.habitacion-card__body {
+  padding: 1rem;
+
+  h2 {
+    margin: 0 0 0.5rem;
+    font-size: 1.2rem;
+    color: #212529;
+  }
+
+  p {
+    margin: 0 0 0.9rem;
+    color: #495057;
+    line-height: 1.4;
+  }
+
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    gap: 0.45rem;
+    color: #343a40;
+  }
+}
+
+@media (max-width: 768px) {
+  .habitaciones {
+    padding: 1.25rem 1rem 2rem;
+  }
+
+  .habitaciones__hero h1 {
+    font-size: 1.6rem;
+  }
+}

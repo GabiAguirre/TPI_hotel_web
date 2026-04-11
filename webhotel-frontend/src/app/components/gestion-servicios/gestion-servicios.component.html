@@ -1,0 +1,68 @@
+<section class="gestion-servicios">
+  <header class="gestion-servicios__header">
+    <h1>Gestion de servicios</h1>
+    <p>Alta, edicion y baja de servicios para administradores.</p>
+  </header>
+
+  <div class="gestion-servicios__feedback" *ngIf="error">{{ error }}</div>
+  <div class="gestion-servicios__feedback gestion-servicios__feedback--ok" *ngIf="!error && success">{{ success }}</div>
+
+  <form class="gestion-form" (ngSubmit)="guardarServicio()">
+    <div class="gestion-form__grid">
+      <label>
+        Denominacion
+        <input type="text" name="denominacion" [(ngModel)]="form.denominacion" required />
+      </label>
+
+      <label>
+        Costo
+        <input type="number" name="costo" [(ngModel)]="form.costo" min="0" required />
+      </label>
+
+      <label class="gestion-form__field--full">
+        URL de imagen
+        <input type="text" name="urlImagen" [(ngModel)]="form.url_imagen" />
+      </label>
+
+      <label class="gestion-form__field--full">
+        Descripcion
+        <textarea name="descripcion" [(ngModel)]="form.descripcion" rows="3" required></textarea>
+      </label>
+    </div>
+
+    <div class="gestion-form__actions">
+      <button type="submit" [disabled]="isSaving">
+        {{ editingId ? 'Guardar cambios' : 'Agregar servicio' }}
+      </button>
+      <button type="button" class="secondary" (click)="cancelarEdicion()" *ngIf="editingId">Cancelar</button>
+    </div>
+  </form>
+
+  <div class="gestion-servicios__estado" *ngIf="isLoading">Cargando servicios...</div>
+
+  <table class="gestion-tabla" *ngIf="!isLoading && servicios.length > 0">
+    <thead>
+      <tr>
+        <th>Denominacion</th>
+        <th>Descripcion</th>
+        <th>Costo</th>
+        <th>Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let servicio of servicios">
+        <td>{{ servicio.denominacion }}</td>
+        <td>{{ servicio.descripcion }}</td>
+        <td>${{ servicio.costo || servicio.precio }}</td>
+        <td class="gestion-tabla__actions">
+          <button type="button" (click)="editarServicio(servicio)">Editar</button>
+          <button type="button" class="danger" (click)="eliminarServicio(servicio)">Eliminar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="gestion-servicios__estado" *ngIf="!isLoading && servicios.length === 0">
+    No hay servicios cargados.
+  </div>
+</section>

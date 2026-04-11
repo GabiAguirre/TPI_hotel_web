@@ -1,0 +1,96 @@
+<div class="auth-container">
+  <div class="auth-card">
+    <h2 class="auth-title">Crear cuenta</h2>
+
+    <div class="row g-2 mb-2">
+      <div class="col-6">
+        <label class="form-label">Tipo de documento</label>
+        <select class="form-select" [(ngModel)]="tipoDoc">
+          <option value="DNI">DNI</option>
+          <option value="Pasaporte">Pasaporte</option>
+          <option value="Cedula">Cedula</option>
+        </select>
+      </div>
+      <div class="col-6">
+        <label class="form-label">Numero de documento</label>
+        <input class="form-control" type="text" inputmode="numeric" [(ngModel)]="numDoc" placeholder="12345678">
+      </div>
+    </div>
+
+    <div class="row g-2 mb-2">
+      <div class="col-6">
+        <label class="form-label">Nombre</label>
+        <input class="form-control" type="text" [(ngModel)]="nombre" placeholder="Gabriel">
+      </div>
+      <div class="col-6">
+        <label class="form-label">Apellido</label>
+        <input class="form-control" type="text" [(ngModel)]="apellido" placeholder="Aguirre">
+      </div>
+    </div>
+
+    <div class="row g-2 mb-2">
+      <div class="col-6">
+        <label class="form-label">Sexo</label>
+        <select class="form-select" [(ngModel)]="sexo">
+          <option value="" disabled>Selecciona</option>
+          <option value="F">Femenino</option>
+          <option value="M">Masculino</option>
+          <option value="X">No binario</option>
+        </select>
+      </div>
+      <div class="col-6">
+        <label class="form-label">Fecha de nacimiento</label>
+        <input class="form-control" type="date" [(ngModel)]="fechaNacimiento">
+      </div>
+    </div>
+
+    <div class="row g-2 mb-2">
+      <div class="col-6">
+        <label class="form-label">Mail</label>
+        <input class="form-control" type="email" [(ngModel)]="mail" placeholder="gabriel@mail.com">
+      </div>
+      <div class="col-6">
+        <label class="form-label">Telefono</label>
+        <input class="form-control" type="text" inputmode="numeric" [(ngModel)]="telefono" placeholder="1122334455">
+      </div>
+    </div>
+
+    <div class="row g-2 mb-2">
+      <div class="col-6">
+        <label class="form-label">Usuario</label>
+        <input class="form-control" type="text" [(ngModel)]="usuario" placeholder="gaguirre">
+      </div>
+      <div class="col-6">
+        <label class="form-label">Contrasena</label>
+        <input class="form-control" type="password" [(ngModel)]="password" placeholder="Minimo 6 caracteres">
+      </div>
+    </div>
+
+    <div class="row g-2 mb-3">
+      <div class="col-6">
+        <label class="form-label">Tipo de tarjeta de credito</label>
+        <select class="form-select" [(ngModel)]="tipoTarjetaCredito">
+          <option value="" disabled>Selecciona</option>
+          <option value="Visa">Visa</option>
+          <option value="Mastercard">Mastercard</option>
+          <option value="Amex">American Express</option>
+          <option value="Naranja">Naranja</option>
+        </select>
+      </div>
+      <div class="col-6">
+        <label class="form-label">Numero de tarjeta de credito</label>
+        <input class="form-control" type="text" inputmode="numeric" [(ngModel)]="numTarjetaCredito" placeholder="4000123412341234">
+      </div>
+    </div>
+
+    <button class="btn btn-primary w-100" type="button" (click)="register()" [disabled]="isLoading">
+      {{ isLoading ? 'Registrando...' : 'Crear cuenta' }}
+    </button>
+
+    <small *ngIf="message" class="text-muted d-block mt-2 text-center">{{ message }}</small>
+
+    <p class="auth-footer">
+      ¿Ya tenés cuenta? <a routerLink="/login">Iniciá sesión</a>
+    </p>
+  </div>
+</div>
