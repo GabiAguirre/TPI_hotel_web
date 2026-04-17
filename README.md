@@ -33,21 +33,6 @@ webhotel_tpi/
 
 ---
 
-## Configuración de base de datos
-
-Crear la base de datos y el usuario en MySQL:
-
-```sql
-CREATE DATABASE webhotel;
-CREATE USER 'webhotel_user'@'localhost' IDENTIFIED BY 'webhotel_pass';
-GRANT ALL PRIVILEGES ON webhotel.* TO 'webhotel_user'@'localhost';
-FLUSH PRIVILEGES;
-```
-
-Las tablas se crean automáticamente al iniciar el backend (`ddl-auto=update`).
-
----
-
 ## Instalación y ejecución
 
 ### Backend
@@ -128,13 +113,22 @@ Queda disponible en `http://localhost:4200`. El proxy redirige `/api` hacia el b
 
 ---
 
+## Usuarios:
+-cliente: 
+ --email:gabiaguirre@gmail.com
+ --contraseña:123456
+
+-admin:
+ --email:gabi@gmail.com
+ --contraseña:123456
+
 ## Variables de configuración
 
 ### Backend (`application.properties`)
 ```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/webhotel
-spring.datasource.username=webhotel_user
-spring.datasource.password=webhotel_pass
+spring.datasource.url=jdbc:mysql://sql.freedb.tech:3306/freedb_webhotel?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=UTC
+spring.datasource.username=freedb_gabii
+spring.datasource.password=x#?A9kzETzvqeyF
 ```
 
 
